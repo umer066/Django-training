@@ -15,10 +15,12 @@ def login(request):
 
         username = request.POST.get('username')
         password = request.POST.get('password')
+        print(username, password)
         #  check if the user enter correct credentials
         user = authenticate(username=username, password=password)
         if user is not None:
             # A backend authenticated the credentials
+            login(request, user)
             return redirect("/")
         else:
             # No backend authenticated the credentials
